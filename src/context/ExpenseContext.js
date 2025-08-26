@@ -92,7 +92,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const fetchAccounts = async () => {
     try {
-      const res = await axios.get('/api/accounts');
+      const res = await api.get('/api/accounts');
       dispatch({ type: 'SET_ACCOUNTS', payload: res.data });
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error.response?.data?.message });
@@ -101,7 +101,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const addAccount = async (accountData) => {
     try {
-      const res = await axios.post('/api/accounts', accountData);
+      const res = await api.post('/api/accounts', accountData);
       dispatch({ type: 'ADD_ACCOUNT', payload: res.data });
       return { success: true };
     } catch (error) {
@@ -112,7 +112,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const updateAccount = async (id, accountData) => {
     try {
-      const res = await axios.put(`/api/accounts/${id}`, accountData);
+      const res = await api.put(`/api/accounts/${id}`, accountData);
       dispatch({ type: 'UPDATE_ACCOUNT', payload: res.data });
       return { success: true };
     } catch (error) {
@@ -123,7 +123,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const deleteAccount = async (id) => {
     try {
-      await axios.delete(`/api/accounts/${id}`);
+      await api.delete(`/api/accounts/${id}`);
       dispatch({ type: 'DELETE_ACCOUNT', payload: id });
       return { success: true };
     } catch (error) {
@@ -135,7 +135,7 @@ export const ExpenseProvider = ({ children }) => {
   const fetchAnalytics = async (filters = {}) => {
     try {
       const params = new URLSearchParams(filters);
-      const res = await axios.get(`/api/expenses/analytics?${params}`);
+      const res = await api.get(`/api/expenses/analytics?${params}`);
       dispatch({ type: 'SET_ANALYTICS', payload: res.data });
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error.response?.data?.message });
