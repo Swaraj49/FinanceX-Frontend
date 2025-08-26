@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import axios from '../config/axios';
+import api from '../config/axios';
 
 const AuthContext = createContext();
 
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       loadUser();
     } else {
       dispatch({ type: 'SET_LOADING', payload: false });
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const loadUser = async () => {
     try {
-      const res = await axios.get('/api/auth/me');
+      const res = await api.get('/api/auth/me');
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload: {
@@ -80,9 +80,9 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await api.post('/api/auth/login', { email, password });
       
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
       
       dispatch({
         type: 'LOGIN_SUCCESS',
@@ -99,9 +99,9 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      const res = await axios.post('/api/auth/register', { name, email, password });
+      const res = await api.post('/api/auth/register', { name, email, password });
       
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
       
       dispatch({
         type: 'LOGIN_SUCCESS',
@@ -116,7 +116,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    delete axios.defaults.headers.common['Authorization'];
+    delete api.defaults.headers.common['Authorization'];
     dispatch({ type: 'LOGOUT' });
   };
 

@@ -1,9 +1,27 @@
 import axios from 'axios';
 
-// Set the base URL for all axios requests
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// Create a dedicated axios instance
+const apiUrl = process.env.REACT_APP_API_URL || 'https://financex-y5dy.onrender.com';
 
-// Set default headers
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+const axiosInstance = axios.create({
+  baseURL: apiUrl,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  timeout: 10000, // 10 second timeout
+});
 
-export default axios;
+// Add response interceptor for error handling
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Handle unauthorized access
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default axiosInstance;

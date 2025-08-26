@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import axios from '../config/axios';
+import api from '../config/axios';
 
 const ExpenseContext = createContext();
 
@@ -61,7 +61,7 @@ export const ExpenseProvider = ({ children }) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
       const params = new URLSearchParams(filters);
-      const res = await axios.get(`/api/expenses?${params}`);
+      const res = await api.get(`/api/expenses?${params}`);
       dispatch({ type: 'SET_EXPENSES', payload: res.data.expenses });
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error.response?.data?.message });
@@ -70,7 +70,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const addExpense = async (expenseData) => {
     try {
-      const res = await axios.post('/api/expenses', expenseData);
+      const res = await api.post('/api/expenses', expenseData);
       dispatch({ type: 'ADD_EXPENSE', payload: res.data });
       return { success: true };
     } catch (error) {
@@ -81,7 +81,7 @@ export const ExpenseProvider = ({ children }) => {
 
   const deleteExpense = async (id) => {
     try {
-      await axios.delete(`/api/expenses/${id}`);
+      await api.delete(`/api/expenses/${id}`);
       dispatch({ type: 'DELETE_EXPENSE', payload: id });
       return { success: true };
     } catch (error) {
