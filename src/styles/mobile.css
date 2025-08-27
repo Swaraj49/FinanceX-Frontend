@@ -1,0 +1,67 @@
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Fix viewport issues */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  /* Ensure proper touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Fix input zoom on iOS */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  /* Prevent text overflow */
+  .font-mono {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix grid layouts on very small screens */
+  .grid {
+    gap: 1rem;
+  }
+  
+  /* Ensure proper spacing */
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  /* Reduce padding on very small screens */
+  .px-6 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Smaller text on mobile */
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem;
+  }
+}

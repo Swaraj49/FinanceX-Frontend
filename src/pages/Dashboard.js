@@ -24,9 +24,9 @@ const Dashboard = () => {
   const recentExpenses = expenses.slice(0, 5);
 
   const MetricPanel = ({ title, value, status, icon, trend }) => (
-    <div className="bg-gray-900/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300 group">
-      <div className="flex items-center justify-between mb-4">
-        <div className="text-cyan-400 text-2xl">{icon}</div>
+    <div className="bg-gray-900/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-4 sm:p-6 hover:border-cyan-400/40 transition-all duration-300 group">
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className="text-cyan-400 text-xl sm:text-2xl">{icon}</div>
         <div className={`px-2 py-1 rounded-full text-xs font-mono ${
           status === 'optimal' ? 'bg-green-500/20 text-green-400' :
           status === 'warning' ? 'bg-yellow-500/20 text-yellow-400' :
@@ -36,8 +36,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="mb-2">
-        <h3 className="text-gray-400 text-sm font-mono mb-1">{title}</h3>
-        <p className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
+        <h3 className="text-gray-400 text-xs sm:text-sm font-mono mb-1">{title}</h3>
+        <p className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
           {value}
         </p>
       </div>
@@ -67,41 +67,41 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-16 sm:pt-20 relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-black to-purple-900/10"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
         {/* Floating elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-400/5 to-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 bg-gradient-to-r from-cyan-400/5 to-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="relative z-10 px-6">
+      <div className="relative z-10 px-4 sm:px-6">
         {/* Command Center Header */}
-        <div className="mb-8">
-          <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
+        <div className="mb-6 sm:mb-8">
+          <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold">{user?.name?.charAt(0)?.toUpperCase()}</span>
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-lg sm:text-2xl font-bold">{user?.name?.charAt(0)?.toUpperCase()}</span>
                   </div>
                   <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full blur opacity-30 animate-pulse"></div>
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                     COMMAND CENTER
                   </h1>
-                  <p className="text-gray-400 font-mono">Welcome back, Agent {user?.name}</p>
+                  <p className="text-gray-400 font-mono text-sm sm:text-base">Welcome back, Agent {user?.name}</p>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-cyan-400 font-mono text-lg">
+              <div className="text-left sm:text-right">
+                <div className="text-cyan-400 font-mono text-base sm:text-lg">
                   {currentTime.toLocaleTimeString()}
                 </div>
-                <div className="text-gray-400 font-mono text-sm">
+                <div className="text-gray-400 font-mono text-xs sm:text-sm">
                   {currentTime.toLocaleDateString()}
                 </div>
               </div>
@@ -110,7 +110,7 @@ const Dashboard = () => {
         </div>
 
         {/* System Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <MetricPanel
             title="TOTAL_BALANCE"
             value={`$${totalBalance.toFixed(2)}`}
@@ -142,7 +142,7 @@ const Dashboard = () => {
         </div>
 
         {/* Main Interface Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Activity Feed */}
           <div className="lg:col-span-2">
             <div className="bg-gray-900/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-6">

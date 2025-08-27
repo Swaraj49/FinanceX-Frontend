@@ -11,6 +11,7 @@ import Expenses from './pages/Expenses';
 import Accounts from './pages/Accounts';
 import Analytics from './pages/Analytics';
 import ProtectedRoute from './components/ProtectedRoute';
+import './styles/mobile.css';
 
 const App = () => {
   return (

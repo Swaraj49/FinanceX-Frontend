@@ -92,26 +92,26 @@ const Expenses = () => {
   });
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-16 sm:pt-20 relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-black to-purple-900/10"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
         {/* Floating elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-cyan-400/5 to-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 bg-gradient-to-r from-cyan-400/5 to-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="relative z-10 px-6">
+      <div className="relative z-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto mb-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">EXPENSE_TRACKING</h1>
-            <p className="text-gray-400 font-mono">Monitor and manage your daily expenses</p>
+            <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-2">EXPENSE_TRACKING</h1>
+            <p className="text-gray-400 font-mono text-sm sm:text-base">Monitor and manage your daily expenses</p>
           </div>
-          <div className="flex gap-3 mt-4 sm:mt-0">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-0 w-full sm:w-auto">
             {accounts.length === 0 && (
               <a
                 href="/accounts"
@@ -148,7 +148,7 @@ const Expenses = () => {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div className="bg-gray-900/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300 group">
             <div className="flex items-center justify-between">
               <div>
@@ -194,14 +194,14 @@ const Expenses = () => {
 
         {/* Add Expense Form */}
         {showForm && (
-          <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-8 mb-8 shadow-2xl">
+          <div className="bg-gray-900/80 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-4 sm:p-8 mb-6 sm:mb-8 shadow-2xl">
             <div className="flex items-center space-x-3 mb-6">
               <div className="p-2 bg-cyan-500/20 rounded-lg">
                 <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-mono">ADD_NEW_EXPENSE</h2>
+              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-mono">ADD_NEW_EXPENSE</h2>
             </div>
             
             {(error || submitError) && (
@@ -240,7 +240,7 @@ const Expenses = () => {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="block text-sm font-medium text-cyan-400 mb-2 font-mono">
                     DESCRIPTION
@@ -325,7 +325,7 @@ const Expenses = () => {
                   />
                 </div>
 
-                <div className="md:col-span-2">
+                <div className="sm:col-span-2">
                   <button
                     type="submit"
                     disabled={!formData.account}
@@ -341,14 +341,14 @@ const Expenses = () => {
 
         {/* Expenses List */}
         <div className="bg-gray-900/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl shadow-lg">
-          <div className="p-6 border-b border-cyan-500/20">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-mono">RECENT_EXPENSES</h2>
-              <div className="flex space-x-2">
+          <div className="p-4 sm:p-6 border-b border-cyan-500/20">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-mono">RECENT_EXPENSES</h2>
+              <div className="flex space-x-2 w-full sm:w-auto">
                 <select
                   value={filter.category}
                   onChange={(e) => setFilter({ ...filter, category: e.target.value })}
-                  className="px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono"
+                  className="flex-1 sm:flex-none px-3 py-2 bg-gray-800/50 border border-gray-600 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono"
                 >
                   <option value="" className="bg-gray-800">All Categories</option>
                   {categories.map(category => (
@@ -361,40 +361,43 @@ const Expenses = () => {
             </div>
           </div>
           
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {expenses.length > 0 ? (
               <div className="space-y-4">
                 {expenses.map((expense) => {
                   const categoryInfo = getCategoryInfo(expense.category);
                   return (
-                    <div key={expense._id} className="flex items-center justify-between p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 hover:bg-gray-800/50 transition-all duration-300">
-                      <div className="flex items-center space-x-4">
-                        <div className="p-3 bg-red-500/20 rounded-xl">
-                          <span className="text-2xl">{categoryInfo.icon}</span>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-white font-mono">{expense.description}</h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-400 font-mono">
-                            <span>{categoryInfo.label.toUpperCase()}</span>
-                            <span>•</span>
-                            <span>{expense.account?.name}</span>
-                            <span>•</span>
-                            <span>{new Date(expense.date).toLocaleDateString()}</span>
+                    <div key={expense._id} className="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-cyan-500/30 hover:bg-gray-800/50 transition-all duration-300 p-4">
+                      {/* Mobile Layout */}
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                        <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
+                          <div className="p-2 sm:p-3 bg-red-500/20 rounded-xl flex-shrink-0">
+                            <span className="text-lg sm:text-2xl">{categoryInfo.icon}</span>
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="font-semibold text-white font-mono text-sm sm:text-base truncate">{expense.description}</h3>
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 text-xs sm:text-sm text-gray-400 font-mono mt-1">
+                              <span className="truncate">{categoryInfo.label.toUpperCase()}</span>
+                              <span className="hidden sm:inline">•</span>
+                              <span className="truncate">{expense.account?.name}</span>
+                              <span className="hidden sm:inline">•</span>
+                              <span>{new Date(expense.date).toLocaleDateString()}</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="flex items-center space-x-4">
-                        <div className="text-right">
-                          <p className="text-xl font-bold text-red-400 font-mono">-${expense.amount.toFixed(2)}</p>
+                        <div className="flex items-center justify-between sm:justify-end space-x-3 sm:space-x-4 flex-shrink-0">
+                          <div className="text-left sm:text-right">
+                            <p className="text-lg sm:text-xl font-bold text-red-400 font-mono">-${expense.amount.toFixed(2)}</p>
+                          </div>
+                          <button
+                            onClick={() => handleDelete(expense._id)}
+                            className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-colors duration-200 flex-shrink-0"
+                          >
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
                         </div>
-                        <button
-                          onClick={() => handleDelete(expense._id)}
-                          className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-lg transition-colors duration-200"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
                       </div>
                     </div>
                   );

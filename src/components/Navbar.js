@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top-aligned navigation */}
       <nav className="bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl w-full">
-        <div className="px-8 py-4 flex items-center justify-between">
+        <div className="px-4 sm:px-8 py-3 sm:py-4 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="relative">
@@ -103,7 +103,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-gray-300 hover:text-white p-2"
+              className="md:hidden text-gray-300 hover:text-white p-2 z-50 relative"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
                 <span className={`bg-current block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
@@ -117,8 +117,8 @@ const Navbar = () => {
 
       {/* Mobile Navigation Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl pt-20">
-          <div className="flex flex-col items-center space-y-8 px-8">
+        <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl pt-16 z-40">
+          <div className="flex flex-col items-center space-y-6 px-6 py-8 overflow-y-auto max-h-screen">
             {isAuthenticated ? (
               <>
                 {navItems.map((item) => (
